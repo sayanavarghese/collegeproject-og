@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+  {% extends 'base.html' %}
 {% load static %}
 {% block title %}
 Home
@@ -10,23 +10,77 @@ Home
 
 {% block content %}
 
-  <div
-  class="text-left bg-light img-job style="margin-right:800px; margin-top:300px;""
->
-  <div class="col-md-5 p-lg-5 mx-auto my-5 text-light">
-    
-    <p class="lead font-weight-normal "   >
-      Searching for a job?<br>
-      Find the best startup<br>
-      job that fit you<br>
-    </p>
-    
+<div class="text-left bg-light img-job" >
+  <div class="container-fluid content-box">
+    <div class="row">
+      <div class="col-9">
+        <div class="content-div">
+        <p>Searching for a job?</p>
+        <p>Find the best startup</p>
+        <p>job that fit you</p>
+      </div>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-primary join-now-btn">Join now</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class='col-12'>
+        <div class="control-panel">
+          <input class="form-control" placeholder="Job Title or Keyword"  />
+          <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Location
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Location</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary">Search</button>
+
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="product-device box-shadow d-none d-md-block"></div>
-  <div
-    class="product-device product-device-2 box-shadow d-none d-md-block"
-  ></div>
 </div>
 
+<div class="container-fluid" >
+  <div class='row row-panel'>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  <div class='col-2 row-col'>
+    <a href="#">Home</a>
+  </div>
+  </div>
+</div>
+<div class="main-content">
 
+  <div class="jumbotron">
+    <h1 class="display-4">Hello, world!</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+  </div>
+
+</div>
 {% endblock content %}

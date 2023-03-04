@@ -1,7 +1,65 @@
-/* .{
-   margin-right: 20%
-   color:red;
-} */
-/* .innerimg{
-   margin-right: 800px;
-} */
+.img-job {
+  background-image: url('/static/img/job 2.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+}
+
+.content-box {
+  color: white;
+  margin-top: 20px;
+}
+
+.join-now-btn {
+  float: right;
+  margin-top: 10px;
+  margin-right: 15px;
+  padding: 6px 15px;
+}
+
+.content-div {
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+.content-div p {
+  line-height: 25px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.control-panel {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  width: 800px;
+  background-color: rgb(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 200px auto;
+}
+
+.navigation-nav ol {
+  margin: 0px auto;
+}
+
+.navigation-nav li {
+  padding: 10px 20px;
+}
+
+.row-panel {
+  border: 1px solid rgb(192, 192, 192);
+  padding: 10px 5px;
+}
+
+.row-col:last-child {
+  border: none;
+}
+.row-col {
+  border-right: 1px solid rgb(192, 192, 192);
+  text-align: center;
+}
+
+.main-content {
+  min-height: 300px;
+}
