@@ -1,0 +1,12 @@
+form{
+    margin: 40px auto;
+    width: 400px;
+    padding: 20px 30px;
+    border: 1px solid rgb(225,225,255);
+    border-radius: 5px;
+}
+h2{
+    color: rgb(52,75,226);
+    font-size:30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
