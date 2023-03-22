@@ -1,14 +1,17 @@
 .img-job {
-  background-image: url('/static/img/job 2.jpg');
+  background-image: url('/static/img/job13.jpg');
  margin-top: 10px;
   background-size: cover;
   width: 100%;
   height: 500px;
 }
-
+.content-para{
+  margin-left: 300px;
+  
+}
 .content-box {
-  color: white;
-  margin-top: 20px;
+  
+  margin-top: 2px;
 }
 
 .join-now-btn {
@@ -72,4 +75,11 @@
 }
 .card-text {
   height: 100px;
+}
+.div-para{
+  margin-left: 100px;
+  margin-top: 20px;
+  margin-right: 100px;
+ 
+  text-align: justify;
 }
