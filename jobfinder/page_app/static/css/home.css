@@ -1,16 +1,25 @@
 .img-job {
   background-image: url('/static/img/job13.jpg');
- margin-top: 10px;
   background-size: cover;
   width: 100%;
   height: 500px;
+  margin-top: -5px;
 }
-.content-para{
-  margin-left: 300px;
-  
+
+.img-job::after {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100%;
+  height: 500px;
 }
+.img-job * {
+  z-index: 10;
+}
+
 .content-box {
-  
   margin-top: 2px;
 }
 
@@ -19,17 +28,8 @@
   margin-top: 10px;
   margin-right: 15px;
   padding: 6px 15px;
-}
-
-.content-div {
-  margin-top: 50px;
-  margin-left: 100px;
-}
-
-.content-div p {
-  line-height: 25px;
-  font-size: 30px;
-  font-weight: bold;
+  position: relative;
+  z-index: 10px;
 }
 
 .control-panel {
@@ -40,7 +40,7 @@
   background-color: rgb(255, 255, 255, 0.5);
   border-radius: 5px;
   padding: 5px;
-  margin: 200px auto;
+  margin: 100px auto;
 }
 
 .navigation-nav ol {
@@ -76,10 +76,26 @@
 .card-text {
   height: 100px;
 }
-.div-para{
+.div-para {
   margin-left: 100px;
   margin-top: 20px;
   margin-right: 100px;
- 
+
   text-align: justify;
+}
+
+.row-wide {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+}
+.row-wide .content-div {
+  color: white;
+  line-height: 25px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
 }
