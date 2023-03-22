@@ -12,7 +12,9 @@ urlpatterns = [
     path('user/home/',views.userhome,name='userhome'),
     path('jobadder/home/',views.jobadderhome,name='jobadderhome'),
     path('user/register/',views.userregister,name='userregister'),
-    path('jobadder/register/',views.jobadderregister,name='jobadderregister')
+    path('jobadder/register/',views.jobadderregister,name='jobadderregister'),
+    path('user/logout/',views.logout_user,name='logout_user'),
+    path('jobadder/logout/',views.logout_jobadder,name='logout_jobadder'),
     
     
       
