@@ -1,31 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-Create your models here.
-class Job(models.Model):
-    title=models.TextField(max_length=225)
-    position=models.TextField(max_length=225)
-    category=models.TextField(max_length=225)
-    location=models.TextField(max_length=225)
-    description=models.TextField(max_length=225)
-    userld=models.IntegerField()
-    salary=models.TextField(max_length=225)
-    create_at=models.DateTimesField(auto_now_add=True)
-    
-class Resume(models.Model):
-    title=models.TextField(max_length=225)
-    name=models.TextField(max_length=225)
-    email=models.EmailField(max_length=225)
-    address=models.TextField(max_length=225)
-    experiance=models.TextField(max_length=225)
-    qualification=models.TextField(max_length=225)
-    phone_no=models.IntegerField(max_length=12)
-    about_me=models.TextField(max_length=225)
-class Application(models.Model):
-        applied_by=models.Forignkey(User,on_delete=models.CASCADE)
-        job=models.models.Forignkey(User,on_delete=models.CASCADE)
-        create_at=models.DateTimeField(auto_now_add=True)
-
 class Profile(models.Model):
         CHOICES = (
         ("ADMIN", "ADMIN"),
@@ -34,6 +9,38 @@ class Profile(models.Model):
 )
         user =models.OneToOneField(User, on_delete= models.CASCADE)
         user_type =models.CharField(max_length=150, choices =CHOICES, default ='USER')
+
+class Category(models.Model):
+      name = models.CharField(max_length=255)
+
+
+class Job(models.Model):
+    title=models.CharField(max_length=225)
+    position=models.CharField(max_length=225)
+    category=models.ForeignKey(Category, on_delete=models.CASCADE)
+    location=models.TextField()
+    description=models.TextField()
+    added_by=models.ForeignKey(User,on_delete=models.CASCADE)
+    salary=models.CharField(max_length=225)
+    created_at=models.DateTimeField(auto_now_add=True)
+    
+class Resume(models.Model):
+    title=models.CharField(max_length=225)
+    name=models.CharField(max_length=225)
+    email=models.EmailField(max_length=225)
+    address=models.TextField()
+    experiance=models.TextField()
+    qualification=models.TextField()
+    phone_no=models.CharField(max_length=12)
+    about_me=models.TextField()
+
+
+class Application(models.Model):
+        applied_by=models.ForeignKey(User,on_delete=models.CASCADE)
+        job=models.ForeignKey(Job,on_delete=models.CASCADE)
+        create_at=models.DateTimeField(auto_now_add=True)
+
+
 
 
 
