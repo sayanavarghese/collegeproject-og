@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+Create your models here.
 class Job(models.Model):
     title=models.TextField(max_length=225)
     position=models.TextField(max_length=225)
