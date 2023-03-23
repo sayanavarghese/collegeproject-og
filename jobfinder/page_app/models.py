@@ -10,7 +10,7 @@ class Job(models.Model):
     description=models.TextField(max_length=225)
     userld=models.IntegerField()
     salary=models.TextField(max_length=225)
-    Create_at=models.DateTimesField(auto_now_add=True)
+    create_at=models.DateTimesField(auto_now_add=True)
     
 class Resume(models.Model):
     title=models.TextField(max_length=225)
@@ -24,7 +24,7 @@ class Resume(models.Model):
 class Application(models.Model):
         applied_by=models.Forignkey(User,on_delete=models.CASCADE)
         job=models.models.Forignkey(User,on_delete=models.CASCADE)
-        Create_at=models.DateTimesField(auto_now_add=True)
+        create_at=models.DateTimeField(auto_now_add=True)
 
 class Profile(models.Model):
         CHOICES = (
