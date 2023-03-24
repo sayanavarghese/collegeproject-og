@@ -112,6 +112,19 @@ def jobadderregister(request):
     else:
         form = jobadderForm()
     return render(request,'jobadderregister.html',{'form':form})
+def it_job(request):
+     return render(request,'itjob.html')
+def Aviation(request):
+     return render(request,'Aviation.html')
+def Medical (request):
+     return render(request,'Medical.html')
+def Hotel_Management(request):
+     return render(request,'hotelmanagement.html')
+def Engineering(request):
+     return render(request,'Engineering.html')
+def Dress_Design(request):
+     return render(request,'Dress Design.html')
+
     
 
     

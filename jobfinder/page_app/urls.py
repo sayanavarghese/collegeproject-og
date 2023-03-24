@@ -15,11 +15,12 @@ urlpatterns = [
     path('jobadder/register/',views.jobadderregister,name='jobadderregister'),
     path('user/logout/',views.logout_user,name='logout_user'),
     path('jobadder/logout/',views.logout_jobadder,name='logout_jobadder'),
-     
-    
-    
-      
-      
+    path('it_job/',views.it_job,name='itjob'),
+    path('Aviation/',views.Aviation,name='Aviation'),
+    path('Medical/',views. Medical,name='Medical'),
+    path('Hotel_Management/',views.Hotel_Management,name='hotelmanagement'),
+    path('Engineering/',views.Engineering,name='Engineering'),
+    path('Dress_Design/',views.Dress_Design,name='Dress Design'),
     
 
 ]
