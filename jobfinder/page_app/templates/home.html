@@ -23,21 +23,11 @@ Home
     <div class="row">
       <div class='col-12'>
         <div class="control-panel">
-          <input class="form-control" placeholder="Job Title or Keyword"  />
-          <div class="btn-group">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Location
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Location</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary">Search</button>
-
+          <form method='post' class='home-search-form'>
+           {% csrf_token %}
+          <input name="search" class="form-control" placeholder="Search for Job Position"  />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
         </div>
       </div>
     </div>
@@ -45,67 +35,33 @@ Home
 </div>
 
 <div class="container-fluid" >
-  <div class='row row-panel'style="background-color:skyblue;" id="nav-color">
+  <div  class='row row-panel'style="background-color:skyblue;" id="nav-color">
   <div class='col-2 row-col' >
     <a href="#" style="color: black;">All Categories</a>
   </div>
+  {% for category in categories %}
   <div class='col-2 row-col'>
-    <a href="#"style="color: black;">Center and Art</a>
+    <a href="{% url 'jobseeker' %}?category={{category.id}}" style="color: black;">{{category.name}}</a>
   </div>
-  <div class='col-2 row-col'>
-    <a href="#" style="color: black;">Programming and IT</a>
-  </div>
-  <div class='col-2 row-col'>
-    <a href="#" style="color: black;">Finance and Accounting</a>
-  </div>
-  <div class='col-2 row-col'>
-    <a href="#"style="color: black;">Medical</a>
-  </div>
-  <div class='col-2 row-col'>
-    <a href="#"style="color: black;">Marketing</a>
-  </div>
+  {% endfor %}
   </div>
 </div>
 <div class="main-content">
   
 <div class="container">
   <div class="row">
-  <div class="col-4">
-    <div class="card" style="width: 18rem;">
-      <img src="{% static 'img/job9.jpg' %}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="IT PROFESSIONAL">Engineering</h5>
-        <p class="card-text">Engineering is the use of scientific principles to design and build machines, structures, 
-            and other items and buildings.</p>
-        <a href="#" class="btn btn-primary">Find more</a>
+    {% for category in list_categories %}
+    <div class="col-4">
+      <div class="card card-cat">
+        <div class="card-body">
+          <h5 class="IT PROFESSIONAL">{{category.name}}</h5>
+          <p class="card-text">Click on Find More to find Jobs under {{category.name}}</p>
+          <a href="{% url 'jobseeker' %}?category={{category.id}}" class="btn btn-primary">Find more</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-4">
-    <div class="card" style="width: 18rem;">
-      <img src="{% static 'img/job12.jpg' %}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="IT PROFESSIONAL">Aviation</h5>
-        <p class="card-text">If it has to do with flying or operating a plane, it has to do with aviation.</p>
-        <a href="#" class="btn btn-primary">Find more</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="card" style="width: 18rem;">
-      <img src="{% static 'img/job10.jpg' %}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="BACKED DEVELOPER">Dress Design</h5>
-        <p class="card-text">Tailors and dressmakers cut, sew, mend, and alter clothing. 
-            Typically, tailors work only with menswear, such as suits, jackets, and coats.</p>
-        <a href="#" class="btn btn-primary">Find more</a>
-      </div>
-    </div>
-  </div>
-
+    {% endfor %}
 </div>
-
-
 </div>
 
 </div>

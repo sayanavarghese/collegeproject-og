@@ -15,6 +15,7 @@ urlpatterns = [
     path('jobadder/register/',views.jobadderregister,name='jobadderregister'),
     path('user/logout/',views.logout_user,name='logout_user'),
     path('jobadder/logout/',views.logout_jobadder,name='logout_jobadder'),
+    path('jobadder/add-job/',views.add_job,name='add-job'),
     path('it_job/',views.it_job,name='itjob'),
     path('Aviation/',views.Aviation,name='Aviation'),
     path('Medical/',views. Medical,name='Medical'),

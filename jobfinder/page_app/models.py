@@ -13,6 +13,9 @@ class Profile(models.Model):
 class Category(models.Model):
       name = models.CharField(max_length=255)
 
+      def __str__(self):
+        return self.name
+
 
 class Job(models.Model):
     title=models.CharField(max_length=225)
@@ -33,6 +36,8 @@ class Resume(models.Model):
     qualification=models.TextField()
     phone_no=models.CharField(max_length=12)
     about_me=models.TextField()
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
 
 
 class Application(models.Model):

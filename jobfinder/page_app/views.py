@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from .forms import userForm
 from .forms import jobadderForm
-from .models import Profile
+from .models import Profile,Job,Category
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import user_passes_test
+from .forms import JobForm
+from django.core.paginator import Paginator
+
 
 def is_user(user):     
     try:         
@@ -17,13 +20,47 @@ def is_jobadder(user):
      except Profile.DoesNotExist:         
         return False
 
-# Create your views here.
+
+
+# User
 def home(request):
-    return render(request,'home.html')
+    if request.method == 'POST':
+        search  = request.POST['search']
+        return redirect(f'/jobSeeker?search={search}')
+    categories = Category.objects.all()[:5]
+    list_categories = Category.objects.all()
+    data ={
+        "categories":categories,
+        "list_categories":list_categories
+    }
+
+    return render(request,'home.html',data)
+
+def jobSeeker(request):
+    categoryID = request.GET.get('category')
+    search = request.GET.get('search')
+    if categoryID:
+        jobs = Job.objects.filter(category=categoryID)
+        category = Category.objects.filter(id=categoryID)[0]
+    elif search:
+        jobs = Job.objects.filter(position__contains=search)
+        category = None
+    else:
+        jobs = Job.objects.all()
+        category = None
+    pagination = Paginator(jobs,10)
+    page_number = request.GET.get('page')
+    page_obj = pagination.get_page(page_number)
+    data ={
+        "jobs":jobs,
+        "page_obj":page_obj,
+        "category":category
+    }
+    return render(request,'jobseeker.html',data)
+
 def resume(request):
     return render(request,'resume.html')
-def jobSeeker(request):
-    return render(request,'jobseeker.html')
+
 
 def register(request):
     if request.method=='POST':
@@ -78,9 +115,7 @@ def jobadder_login(request):
 @user_passes_test(is_user,login_url='/user/login/')
 def userhome(request):
     return render(request,'userhome.html')
-@user_passes_test(is_jobadder,login_url='/jobadder/login/')
-def jobadderhome(request):
-    return render(request,'jobadderhome.html')
+
 def userregister(request):
     if request.method =='POST':
         form=userForm(request.POST)
@@ -112,6 +147,44 @@ def jobadderregister(request):
     else:
         form = jobadderForm()
     return render(request,'jobadderregister.html',{'form':form})
+
+def add_job(request):
+    if request.method == 'POST':
+        job_form = JobForm(request.POST,request.FILES)
+        if job_form.is_valid():
+            job= Job()
+            job.title = job_form.cleaned_data['title']
+            job.position = job_form.cleaned_data['position']
+            job.category =job_form.cleaned_data['category']
+            job.location = job_form.cleaned_data['location']
+            job.description = job_form.cleaned_data['description']
+            job.salary = job_form.cleaned_data['salary']
+            job.added_by = request.user
+            job.save()
+            return redirect('jobadderhome')
+    else:
+        job_form = JobForm()
+
+    data ={
+        "job_form":job_form
+    }
+    return render(request,'jobadder_addjob.html',data)
+
+def jobadderhome(request):
+    jobs = Job.objects.all()
+    pagination = Paginator(jobs,10)
+    page_number = request.GET.get('page')
+    page_obj = pagination.get_page(page_number)
+    data ={
+        "jobs":jobs,
+        "page_obj":page_obj
+
+    }
+    return render(request,'jobadderhome.html',data)
+
+
+
+
 def it_job(request):
      return render(request,'itjob.html')
 def Aviation(request):

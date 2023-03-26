@@ -25,4 +25,8 @@ class jobadderForm(UserCreationForm):
    class  Meta:
       model = User
       fields = ('username','email','password1','password2')
-# class JobForm(forms.ModelForm):     
+
+class JobForm(forms.ModelForm):  
+      class Meta:
+        model = Job
+        fields = ('title','position', 'category', 'location','description' ,'salary')   

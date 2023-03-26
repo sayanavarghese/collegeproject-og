@@ -99,8 +99,26 @@
   width: 100%;
   text-align: center;
 }
-a:link{
+a:link {
   text-decoration: none;
-  
 }
 
+.home-search-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-cat {
+  height: 200px;
+  margin: 10px 5px;
+}
+
+.card-cat .card-text {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+
+.card-cat .btn-primary {
+  margin-bottom: 10px;
+}
