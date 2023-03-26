@@ -10,18 +10,23 @@ job seeker
 {% block content %} 
 
 <div class="adder-job-page">
-  <h1>All Jobs</h1>
+  <h1 class="all-jobs">All Jobs..</h1>
   <div class="job-container">
       {% for job in page_obj.object_list  %}
       <div class="job-card">
+          <a href="{% url 'jobseeker-view-job' job.id %}">
           <div class="job-content">
+            <p class="job-category">{{job.category}}</p>
+
               <p class="job-name">{{job.title}}</p>
               <p class="job-position">{{job.position}}</p>
-              <p class="job-location">Location:{{job.location}}</p>
-              <p class="job-location">Salary:{{job.salary}}</p>
+              <p class="job-location">Location: <span class="job-location-span">{{job.location}}</span> </p>
+              <p class="job-location">Salary: <span class="job-salary-span">{{job.salary}}</span></p>
               <p class="job-description">{{job.description}}</p>
              
+            <button class="apply-now">Apply Now</button>
           </div>
+        </a>
       </div>
       {% endfor %}
   </div>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}
+job seeker
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/jobseeker-view-job.css' %}"/>
+{% endblock style %}
+
+{% block content %} 
+
+<div class="adder-job-page">
+  <!-- <h1 class="all-jobs">All Jobs..</h1> -->
+  <div class="job-container">
+    
+      <div class="job-card">
+         
+          
+            <div class="job-head">
+
+                <p class="job-category">{{job.category}}</p>
+                
+                <p class="job-name">{{job.title}}</p>
+                <p class="job-position"> Job Position : <span class="job-position-span">{{job.position}}</span></p>
+            </div>
+
+            <div class="job-content">
+
+              <p class="job-location">Location: <span class="job-location-span">{{job.location}}</span> </p>
+              <p class="job-location">Salary: <span class="job-salary-span">{{job.salary}}</span></p>
+              <p class="job-description">{{job.description}}</p>
+             
+            <button class="apply-now">Apply Now</button>
+              </div>
+
+          </div>
+      
+
+     
+  </div>
+  <div class="pagination">
+      {% if page_obj.has_previous %}
+      <a href="?page={{page_obj.previous_page_number}}">previous</a>
+      {% endif %}
+      <span>{{page_obj.number}}</span>
+      {% if page_obj.has_next %}
+      <a href="?page={{page_obj.next_page_number}}">next</a>
+      {% endif %}
+  </div>
+</div>
+{% endblock content %} 

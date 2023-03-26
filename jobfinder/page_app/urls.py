@@ -5,6 +5,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('resume/',views.resume,name='resume'),
     path('jobSeeker/',views.jobSeeker,name='jobseeker'),
+    path('jobSeeker/view-job/<int:id>',views.jobSeeker_view_job,name='jobseeker-view-job'),
     path('login/',views.login,name='login'),
     path('register/',views.register,name='register'),
     path('user/login/',views.user_login,name='userlogin'),

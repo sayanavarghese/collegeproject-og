@@ -183,6 +183,14 @@ def jobadderhome(request):
     return render(request,'jobadderhome.html',data)
 
 
+def jobSeeker_view_job(request,id):
+
+    job = Job.objects.get(id=id)
+
+
+    return render(request,'jobseekerviewjob.html',{'job':job})
+
+
 
 
 def it_job(request):
