@@ -23,6 +23,8 @@ urlpatterns = [
     path('Hotel_Management/',views.Hotel_Management,name='hotelmanagement'),
     path('Engineering/',views.Engineering,name='Engineering'),
     path('Dress_Design/',views.Dress_Design,name='Dress Design'),
+    path('add_resume/',views.add_resume,name='add_resume'),
+    path('viewresume/',views.viewresume,name='viewresume'),
     
 
 ]

@@ -205,6 +205,12 @@ def Engineering(request):
      return render(request,'Engineering.html')
 def Dress_Design(request):
      return render(request,'Dress Design.html')
+def add_resume(request):
+     return render(request,'add_resume.html')
+def viewresume(request):
+     return render(request,'viewresume.html')
+
+
 
     
 
