@@ -29,6 +29,4 @@ urlpatterns = [
     path('applied-jobs/<int:id>',views.applied_jobs,name='applied-jobs'),
     path('user/apply-job/<int:id>',views.apply_job,name="apply-job"),
 
-    
-
 ]

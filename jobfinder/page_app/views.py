@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-import re
 from django.shortcuts import render,redirect
 from .forms import userForm
 from .forms import jobadderForm,ResumeForm
@@ -65,9 +63,8 @@ def jobSeeker(request):
 
 @user_passes_test(is_user,login_url='/user/login/')
 def resume(request):
-        res=NULL
+        res= None
         print(request.user)
-        # print(request.user.resume.id)
         res=Resume.objects.filter(user=request.user)
         if res:
             return render(request,'resume.html',{'res':res[0]})
