@@ -1,4 +1,6 @@
 {% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+
 {% load static %}
 {% block title %}
 add_resume
@@ -8,5 +10,14 @@ add_resume
 {% endblock style %}
 
 {% block content %} 
-<h1>ADD_RESUME</h1>
+
+<div style="width: 40%; margin:auto; padding-bottom:20px;" class="form-div">
+    <form method="post">
+        <h2 style="margin: 20px;">Add Resume</h2>
+        {% csrf_token %}{{form | crispy}}
+    <button style="width: 100%;margin-top:20px" class="btn btn-primary" type="submit">Add </button>
+
+</form>
+
+</div>
 {% endblock content %} 

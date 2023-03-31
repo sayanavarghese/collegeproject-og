@@ -1,28 +1,33 @@
+from asyncio.windows_events import NULL
+import re
 from django.shortcuts import render,redirect
 from .forms import userForm
-from .forms import jobadderForm
-from .models import Profile,Job,Category
+from .forms import jobadderForm,ResumeForm
+from .models import Profile,Job,Category,Resume,Application
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import user_passes_test
 from .forms import JobForm
+from django.http import HttpResponse
+
 from django.core.paginator import Paginator
 
 
 def is_user(user):     
     try:         
-        return user.is_authenticated and (user.profile.usertype == 'USER')     
+        return user.is_authenticated and (user.profile.user_type == 'USER')     
     except Profile.DoesNotExist:         
         return False      
 def is_jobadder(user):     
      try:         
-        return user.is_authenticated and (user.profile.usertype == 'JOBADDER' )     
+        return user.is_authenticated and (user.profile.user_type == 'JOB_ADDER' )     
      except Profile.DoesNotExist:         
         return False
 
 
 
 # User
+@user_passes_test(is_user,login_url='/user/login/')
 def home(request):
     if request.method == 'POST':
         search  = request.POST['search']
@@ -58,8 +63,17 @@ def jobSeeker(request):
     }
     return render(request,'jobseeker.html',data)
 
+@user_passes_test(is_user,login_url='/user/login/')
 def resume(request):
-    return render(request,'resume.html')
+        res=NULL
+        print(request.user)
+        # print(request.user.resume.id)
+        res=Resume.objects.filter(user=request.user)
+        if res:
+            return render(request,'resume.html',{'res':res[0]})
+   
+        else:
+             return render(request,'resume.html')
 
 
 def register(request):
@@ -88,7 +102,7 @@ def user_login(request):
                 if(user.profile.user_type == 'JOB_ADDER'):
                     return redirect("jobadderlogin")
                 else:
-                    return redirect("userhome")
+                    return redirect("/")
 
     else:
         form = AuthenticationForm()
@@ -110,9 +124,12 @@ def jobadder_login(request):
                 if(user.profile.user_type == 'USER'):
                     return redirect("userlogin")
                 else:
-                    return redirect("jobadderhome")
-    return render(request,'jobadderlogin.html',{'form':form})
-@user_passes_test(is_user,login_url='/user/login/')
+                    return redirect("/jobadder/home")
+    else:
+        form = AuthenticationForm()
+
+        return render(request,'jobadderlogin.html',{'form':form})
+@user_passes_test(is_jobadder,login_url='/jobadder/login/')
 def userhome(request):
     return render(request,'userhome.html')
 
@@ -139,7 +156,7 @@ def jobadderregister(request):
         if form.is_valid():
             user = form.save()
             profile = Profile()
-            profile.type = 'JOB_ADDER'
+            profile.user_type = 'JOB_ADDER'
             profile.user = user
             profile.save()
             return redirect('jobadderlogin')
@@ -170,8 +187,9 @@ def add_job(request):
     }
     return render(request,'jobadder_addjob.html',data)
 
+@user_passes_test(is_jobadder,login_url='/jobadder/login/')
 def jobadderhome(request):
-    jobs = Job.objects.all()
+    jobs = Job.objects.filter(added_by=request.user)
     pagination = Paginator(jobs,10)
     page_number = request.GET.get('page')
     page_obj = pagination.get_page(page_number)
@@ -190,7 +208,44 @@ def jobSeeker_view_job(request,id):
 
     return render(request,'jobseekerviewjob.html',{'job':job})
 
+@user_passes_test(is_user,login_url='/user/login/')
+def addresume(request):
 
+    if request.method == 'POST':
+        form = ResumeForm(request.POST)
+        if form.is_valid():
+          
+            abc=form.save(commit=False)
+            abc.user=request.user
+            abc.save()
+            
+            return redirect('resume')
+
+
+    else:
+
+        form=ResumeForm()
+        return render(request,'add_resume.html',{'form':form})
+    
+
+
+@user_passes_test(is_user,login_url='/user/login/')
+def apply_job(request,id):
+    job = Job.objects.get(id=id)
+    check_apply = Application.objects.filter(job=job)
+    if not check_apply:
+        Applied = Application()
+        Applied.job = job
+        Applied.applied_by = request.user
+        Applied.save()
+        return redirect('home')
+    else:
+        return HttpResponse("Job already Applied")
+
+
+def applied_jobs(request,id):
+    applications=Application.objects.filter(job=id)
+    return render(request,'applied_jobs.html',{'applications':applications})
 
 
 def it_job(request):

@@ -43,10 +43,7 @@ class Resume(models.Model):
 class Application(models.Model):
         applied_by=models.ForeignKey(User,on_delete=models.CASCADE)
         job=models.ForeignKey(Job,on_delete=models.CASCADE)
-        create_at=models.DateTimeField(auto_now_add=True)
-
-
-
+       
 
 
     

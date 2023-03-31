@@ -1,0 +1,43 @@
+{% extends 'basejob.html' %} 
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+job applications
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/adder-home.css' %}"/>
+{% endblock style %}
+
+{% block content %} 
+
+
+<div class="table-div">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Job Name</th>
+            <th scope="col">Applied By</th>
+            <th scope="col">email</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for app in applications%}
+            <tr>
+                <th scope="row">1</th>
+                <td>{{app.job.title}}</td>
+                <td>{{app.applied_by.username}}</td>
+                <td>{{app.applied_by.email}}</td>
+                
+              </tr>
+            {%endfor%}
+          
+         
+        </tbody>
+      </table>
+</div>
+
+
+
+{% endblock content %} 

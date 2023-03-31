@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Job
+from .models import Job, Resume
 
 class userForm(UserCreationForm):
    def __init__(self, *args, **kwargs):         
@@ -30,3 +30,9 @@ class JobForm(forms.ModelForm):
       class Meta:
         model = Job
         fields = ('title','position', 'category', 'location','description' ,'salary')   
+
+class ResumeForm(forms.ModelForm):  
+      class Meta:
+        model = Resume
+        fields ='__all__'  
+        exclude=('user',)

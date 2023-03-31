@@ -25,6 +25,10 @@ urlpatterns = [
     path('Dress_Design/',views.Dress_Design,name='Dress Design'),
     path('add_resume/',views.add_resume,name='add_resume'),
     path('viewresume/',views.viewresume,name='viewresume'),
+    path('add-resume/',views.addresume,name='addresume'),
+    path('applied-jobs/<int:id>',views.applied_jobs,name='applied-jobs'),
+    path('user/apply-job/<int:id>',views.apply_job,name="apply-job"),
+
     
 
 ]

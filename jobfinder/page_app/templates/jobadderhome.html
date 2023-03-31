@@ -1,25 +1,32 @@
+{% extends 'basejob.html' %} 
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/adder-home.css' %}"/>
-    <title>job adder</title>
-</head>
-<body>
+{% block title %}
+home
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/adder-home.css' %}"/>
+{% endblock style %}
+
+{% block content %} 
+
+
     <div class="adder-job-page">
-        <h1>Your Jobs</h1>
+        <h1 class="title">Your Jobs</h1>
         <div class="job-container">
             {% for job in page_obj.object_list  %}
+
             <div class="job-card">
+                
+
+              
                 <div class="job-content">
                     <p class="job-name">{{job.title}}</p>
                     <p class="job-position">{{job.position}}</p>
                     <p class="job-location">Location:{{job.location}}</p>
                     <p class="job-location">Salary:{{job.salary}}</p>
                     <p class="job-description">{{job.description}}</p>
+                    <a href="/applied-jobs/{{job.id}}" style="width:100%;margin:auto;" class="btn btn-primary">View Applications</a>
                    
                 </div>
             </div>
@@ -35,5 +42,4 @@
             {% endif %}
         </div>
      </div>
-</body>
-</html>
+     {% endblock content %} 

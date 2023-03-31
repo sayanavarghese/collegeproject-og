@@ -48,6 +48,11 @@
   font-size: 20px;
   font-weight: bold;
   color: rgb(59, 59, 59);
+  overflow: hidden;
+  
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient:vertical;
 }
 
 .job-position {

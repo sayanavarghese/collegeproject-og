@@ -4,9 +4,71 @@
 resume
 {% endblock title %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/resume.css' %}"/>
 {% endblock style %}
 
 {% block content %} 
-<h1>resume</h1>
+{% if res %}
+
+  
+<div class="main-div">
+
+    <div class="sub1">
+    <div class="img-div">
+
+        <img class="avatar" src="{% static 'img/avatar.webp' %}" alt="">
+
+        <h1 class="name">{{res.name}}</h1>
+        <h2 class="title">{{res.title}}</h2>
+    </div>
+
+    <div class="about-div">
+        <div class="heading-div">
+            <h1 class="about-head">ABOUT ME</h1>
+        </div>
+        <p class="content">{{res.about_me}}
+
+        </p>
+    </div>
+    </div>
+    <div class="sub2">
+        <div class="about-div">
+            <div class="heading-div">
+                <h1 class="about-head">PERSONAL INFO</h1>
+            </div>
+            <p class="P-info">Name : <span class="P-info-span"> {{res.name}}</span></p>
+            <p class="P-info">Email : <span class="P-info-span"> {{res.email}}</span></p>
+            <p class="P-info">Phone : <span class="P-info-span"> {{res.phone_no}}</span></p>
+            <p class="P-info">Address : <span class="P-info-span"> {{res.address}}</span></p>
+        </div>
+
+        <div class="about-div">
+            <div class="heading-div">
+                <h1 class="about-head">Qualification</h1>
+            </div>
+            <p class="content"> {{res.qualification}}</p>
+
+        </div>
+
+        <div class="about-div">
+            <div class="heading-div">
+                <h1 class="about-head">Experience</h1>
+            </div>
+            <p class="content">{{res.experiance}}</p>
+        </div>
+    </div>
+
+    <!-- <button class="edit-btn">Edit Resume</button> -->
+
+</div>
+{% else %}
+<div class="btn-div">
+<a href="/add-resume/">
+
+    <button class="edit-btn">Add Resume</button>
+</a>
+
+</div>
+
+{% endif%}
 {% endblock content %} 

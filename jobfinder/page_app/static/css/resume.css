@@ -1,0 +1,83 @@
+.main-div{
+    display: flex;
+}
+.sub1{
+    width: 40%;
+
+}
+.sub2{
+    width: 40%;
+    
+}
+
+.avatar{
+
+    width: 200px;
+    height: 200px;
+    border: 5px solid;
+    border-radius: 50%;
+    border-color: lightskyblue;
+}
+.img-div{
+    width: max-content;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center
+}
+.name{
+    font-size:24px ;
+font-weight: bold;
+color: rgb(3, 155, 250);
+}
+.title{
+    font-size: 19px;
+    color: rgb(1, 8, 31);
+    line-height: 3px;
+}
+
+.heading-div{
+    width: 100%;
+    height: 28px;
+    padding-top: 7px;
+    margin: auto;
+    background-color:lightskyblue ;
+    text-align: center;
+    margin-top:30px;
+    margin-bottom: 20px;
+
+}
+.about-head{
+    font-size: 14px;
+}
+.about-div{
+    padding:0px 10%;
+}
+.content{
+    /* margin-top: 20px; */
+    color: rgb(42, 61, 82);
+}
+.P-info{
+    color: rgba(24, 23, 48, 0.808);
+    font-weight: bold;
+  }
+  .P-info-span{
+    color: grey;
+  }
+
+.edit-btn{
+
+    width: 17%;
+    margin-left: 1.5%;
+    height: 30px;
+    border: none;
+    background-color: rgb(94, 230, 94);
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+.btn-div{
+    width:100%;
+    padding-left: 40%;
+    padding-top: 40vh;
+    padding-bottom: 40vh;
+}
