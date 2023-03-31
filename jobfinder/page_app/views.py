@@ -125,7 +125,7 @@ def jobadder_login(request):
     else:
         form = AuthenticationForm()
 
-        return render(request,'jobadderlogin.html',{'form':form})
+    return render(request,'jobadderlogin.html',{'form':form})
 @user_passes_test(is_jobadder,login_url='/jobadder/login/')
 def userhome(request):
     return render(request,'userhome.html')
