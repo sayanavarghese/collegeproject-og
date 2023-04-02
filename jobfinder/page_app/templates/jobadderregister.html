@@ -23,6 +23,7 @@ job Register
         <h2>Register as jobadder</h2>
         {% csrf_token %}{{form | crispy}}
         <button class="btn btn-primary" type="submit">Register</button>
+        <p>Don't have an account? <a href="{% url 'jobadderregister' %}">Register here</a></p>
     </form>
     
 </body>
