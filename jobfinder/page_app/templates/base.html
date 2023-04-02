@@ -42,11 +42,6 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
 
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'jobadderhome' %}"
-                  >Add Job</a
-                >
-              </li>
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}"
                 >Home</a
               >
@@ -55,8 +50,15 @@
               <a class="nav-link active" href="{% url 'resume' %}">Resume</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'jobseeker' %}">Jobseeker</a>
+              <a class="nav-link active" href="{% url 'jobseeker' %}">Jobs</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'jobadderhome' %}"
+                >Add Job</a
+              >
+            </li>
+           
 {% if user.is_authenticated%}
 <li class="nav-item">
 

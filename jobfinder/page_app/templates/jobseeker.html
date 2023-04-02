@@ -24,7 +24,11 @@ job seeker
               <p class="job-location">Salary: <span class="job-salary-span">{{job.salary}}</span></p>
               <p class="job-description">{{job.description}}</p>
              
-            <button class="apply-now">Apply Now</button>
+          {% if job in job_array %}
+           <button  type="btn" disabled="true" class="apply-now apply-now-d">Already Applied</button>
+           {% else %}
+           <button class="apply-now">Apply Now</button>
+           {% endif %}
           </div>
         </a>
       </div>

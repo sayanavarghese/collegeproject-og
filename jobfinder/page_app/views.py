@@ -39,6 +39,7 @@ def home(request):
 
     return render(request,'home.html',data)
 
+@user_passes_test(is_user,login_url='/user/login/')
 def jobSeeker(request):
     categoryID = request.GET.get('category')
     search = request.GET.get('search')
@@ -54,10 +55,17 @@ def jobSeeker(request):
     pagination = Paginator(jobs,10)
     page_number = request.GET.get('page')
     page_obj = pagination.get_page(page_number)
+    check_apply = Application.objects.filter(applied_by=request.user)
+    job_array=[]
+    for i in check_apply:
+        job_array.append(i.job)
+
+
     data ={
         "jobs":jobs,
         "page_obj":page_obj,
-        "category":category
+        "category":category,
+        "job_array":job_array
     }
     return render(request,'jobseeker.html',data)
 
@@ -103,12 +111,14 @@ def user_login(request):
 
     else:
         form = AuthenticationForm()
-
-   
     return render(request,'userlogin.html',{'form':form})
+
+
 def logout_user(request):
     logout(request)
     return redirect('userlogin')
+
+
 def jobadder_login(request):
     if request.method =='POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -126,6 +136,8 @@ def jobadder_login(request):
         form = AuthenticationForm()
 
     return render(request,'jobadderlogin.html',{'form':form})
+
+
 @user_passes_test(is_jobadder,login_url='/jobadder/login/')
 def userhome(request):
     return render(request,'userhome.html')
@@ -144,9 +156,13 @@ def userregister(request):
     else:
         form = userForm()
     return render(request,'userregister.html',{'form':form})
+
+
 def logout_jobadder(request):
     logout(request)
     return redirect('jobadderlogin')
+
+
 def jobadderregister(request):
     if request.method =='POST':
         form = jobadderForm(request.POST)
@@ -162,6 +178,8 @@ def jobadderregister(request):
         form = jobadderForm()
     return render(request,'jobadderregister.html',{'form':form})
 
+
+@user_passes_test(is_jobadder,login_url='/jobadder/login/')
 def add_job(request):
     if request.method == 'POST':
         job_form = JobForm(request.POST,request.FILES)
@@ -201,9 +219,14 @@ def jobadderhome(request):
 def jobSeeker_view_job(request,id):
 
     job = Job.objects.get(id=id)
+    check_apply = Application.objects.filter(applied_by=request.user)
+    job_array=[]
+    for i in check_apply:
+        job_array.append(i.job)
 
 
-    return render(request,'jobseekerviewjob.html',{'job':job})
+
+    return render(request,'jobseekerviewjob.html',{'job':job,"job_array":job_array})
 
 @user_passes_test(is_user,login_url='/user/login/')
 def addresume(request):
@@ -229,7 +252,7 @@ def addresume(request):
 @user_passes_test(is_user,login_url='/user/login/')
 def apply_job(request,id):
     job = Job.objects.get(id=id)
-    check_apply = Application.objects.filter(job=job)
+    check_apply = Application.objects.filter(job=job).filter(applied_by=request.user)
     if not check_apply:
         Applied = Application()
         Applied.job = job

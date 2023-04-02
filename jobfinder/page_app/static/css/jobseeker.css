@@ -2,12 +2,11 @@
   margin: 30px 20px;
 }
 
-.job-category{
-
+.job-category {
   background-color: rgb(85, 207, 85);
   width: max-content;
   padding: 3px 6px;
-  border-radius:4px;
+  border-radius: 4px;
   font-size: 10px;
   color: white;
   font-weight: bold;
@@ -28,11 +27,13 @@
   padding: 13px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
-.job-card:hover{
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
+.job-card:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
 
 .job-img {
   width: 100%;
@@ -49,10 +50,10 @@
   font-weight: bold;
   color: rgb(59, 59, 59);
   overflow: hidden;
-  
+
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient:vertical;
+  -webkit-box-orient: vertical;
 }
 
 .job-position {
@@ -70,7 +71,7 @@
   /* width: 325px; */
   display: -webkit-box;
   -webkit-line-clamp: 4;
-  -webkit-box-orient:vertical;
+  -webkit-box-orient: vertical;
 }
 
 .pagination {
@@ -83,17 +84,17 @@
   margin-left: 20px;
   margin-right: 20px;
 }
-.job-location{
+.job-location {
   font-size: 14px;
   color: rgb(112, 111, 111);
 }
-.job-location-span{
+.job-location-span {
   color: rgb(56, 55, 55);
 }
-.job-salary-span{
+.job-salary-span {
   color: black;
 }
-.apply-now{
+.apply-now {
   background-color: rgb(0, 174, 255);
   border: none;
   color: white;
@@ -102,11 +103,16 @@
   width: 100%;
   /* margin-left: 15%; */
 }
-a{
+
+.apply-now-d {
+  background-color: rgb(154, 223, 255);
+  cursor: not-allowed;
+}
+a {
   text-decoration: none;
 }
-.all-jobs{
+.all-jobs {
   font-size: 25px;
   color: rgb(44, 44, 44);
-  margin:20px;
+  margin: 20px;
 }

@@ -9,9 +9,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>login</h1>
-    <form method="post">
-        {% csrf_token %} {{form | crispy }}
+    <form style="width:40%;margin:30px auto;" method="post">
+        
+        {% csrf_token %}
+    <h1>login as Job Adder</h1>
+    {{form | crispy }}
+        
         <button class="btn btn-primary"type="submit">add</button>
     </form>
 </body>
