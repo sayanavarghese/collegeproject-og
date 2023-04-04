@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import user_passes_test
 from .forms import JobForm
 from django.http import HttpResponse
-
 from django.core.paginator import Paginator
 
 
@@ -234,18 +233,14 @@ def addresume(request):
     if request.method == 'POST':
         form = ResumeForm(request.POST)
         if form.is_valid():
-          
             abc=form.save(commit=False)
             abc.user=request.user
-            abc.save()
-            
+            abc.save() 
             return redirect('resume')
-
-
     else:
 
         form=ResumeForm()
-        return render(request,'add_resume.html',{'form':form})
+    return render(request,'add_resume.html',{'form':form})
     
 
 
